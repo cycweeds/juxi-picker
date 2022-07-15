@@ -144,6 +144,9 @@ extension PickerView : UIPickerViewDelegate, UIPickerViewDataSource {
         for i in (component + 1)..<self.numColumns {
             if pickerView.numberOfRows(inComponent: i) >= 1 {
                 pickerView.selectRow(0, inComponent: i, animated: false)
+                onSelectCallback?(["row": 0, "column": i])
+            } else {
+                onSelectCallback?(["row": -1, "column": i])
             }
         }
         pickerView.reloadAllComponents()
