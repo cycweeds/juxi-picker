@@ -22,13 +22,16 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.0.4")
+        classpath('com.android.tools.build:gradle:7.2.1')
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("de.undercouch:gradle-download-task:4.1.2")
-        // NOTE: Do not place your application dependencies here; they belong
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.21"
+
+      // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
+
 
 allprojects {
     repositories {
@@ -51,3 +54,50 @@ allprojects {
         maven { url 'https://www.jitpack.io' }
     }
 }
+//
+//java {
+//  toolchain {
+//    languageVersion = JavaLanguageVersion.of(11)
+//  }
+//}
+//
+
+//apply plugin: 'kotlin-android'
+
+
+//
+//android {
+//  compileOptions {
+//    sourceCompatibility JavaVersion.VERSION_11
+//    targetCompatibility JavaVersion.VERSION_11
+//  }
+//
+//  kotlinOptions {
+//    jvmTarget = JavaVersion.VERSION_11.toString()
+//  }
+//}
+
+
+//
+//
+//compileKotlin {
+//  sourceCompatibility = JavaVersion.VERSION_1_8
+//  targetCompatibility = JavaVersion.VERSION_1_8
+//
+//  kotlinOptions {
+//    jvmTarget = '1.8'
+//    apiVersion = '1.1'
+//    languageVersion = '1.1'
+//  }
+//}
+
+//
+//plugins {
+//  id 'java'
+//}
+
+//tasks.withType(JavaCompile) {
+//  //enable compilation in a separate daemon process
+//  sourceCompatibility=JavaVersion.VERSION_1_8
+//  targetCompatibility=JavaVersion.VERSION_1_8
+//}

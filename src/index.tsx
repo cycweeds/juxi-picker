@@ -2,8 +2,8 @@ import {
   requireNativeComponent,
   UIManager,
   Platform,
-  ViewStyle,
 } from 'react-native';
+import React from 'react';
 
 const LINKING_ERROR =
   `The package '@juxi/picker' doesn't seem to be linked. Make sure: \n\n` +
@@ -26,15 +26,37 @@ type PickerProps = {
   textSelectFontFamily?: string | undefined
 
   onSelectCallback: (event: any) => void
-
-  
 };
+
 
 const ComponentName = 'PickerView';
 
-export const PickerView =
+const RCTPickerView =
   UIManager.getViewManagerConfig(ComponentName) != null
     ? requireNativeComponent<PickerProps>(ComponentName)
     : () => {
         throw new Error(LINKING_ERROR);
       };
+
+
+
+
+export class PickerView extends React.Component {
+  constructor(props) {
+    super(props);
+    this._onSelectCallback = this._onSelectCallback.bind(this);
+  }
+
+  _onSelectCallback(event: Event) {
+    this.props.onSelectCallback && this.props.onSelectCallback(event.nativeEvent);
+  }
+
+  render() {
+    return (
+      <RCTPickerView
+        {...this.props}
+        onSelectCallback={this._onSelectCallback}
+      />
+    );
+  }
+}
